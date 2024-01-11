@@ -9,7 +9,8 @@ file_path = './Corpus1'
 st.set_page_config(page_title="Essay Writer", page_icon="✍️", layout="centered", initial_sidebar_state="auto", menu_items=None)
 openai.api_key = st.secrets.openai_key
 st.title("Chat with JC's MBA Essays")
-st.info("JC has uploaded his MBA admissions essays. Ask questions about him or his writing!")
+st.subheader("JC has uploaded his MBA admissions essays. Ask questions about him or his writing!", divider=True)
+st.info("Some example prompts:  \nWhat is JC's leadership philosophy?  \nIn JC's voice, write a 10-sentence essay on a time he demonstrated leadership.")
          
 if "messages" not in st.session_state.keys(): # Initialize the chat messages history
     st.session_state.messages = [
