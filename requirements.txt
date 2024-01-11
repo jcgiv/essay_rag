@@ -1,6 +1,6 @@
 streamlit
 openai
-llama-index
+llama_index
 nltk
 pypdf
 doc2txt
