@@ -8,12 +8,12 @@ from llama_index import SimpleDirectoryReader
 file_path = './Corpus1' 
 st.set_page_config(page_title="Essay Writer", page_icon="✍️", layout="centered", initial_sidebar_state="auto", menu_items=None)
 openai.api_key = st.secrets.openai_key
-st.title("Chat with my essays")
-# st.info("Check out the full tutorial to build this app in our [blog post](https://blog.streamlit.io/build-a-chatbot-with-custom-data-sources-powered-by-llamaindex/)", icon="📃")
+st.title("Chat with JC's MBA Essays")
+st.info("JC has uploaded his MBA admissions essays. Ask questions about him or his writing!")
          
 if "messages" not in st.session_state.keys(): # Initialize the chat messages history
     st.session_state.messages = [
-        {"role": "assistant", "content": "Ask me a question about Streamlit's docs!"}
+        {"role": "assistant", "content": "Ask me a question about JC and his essays!"}
     ]
 
 @st.cache_resource(show_spinner=False)
@@ -21,7 +21,7 @@ def load_data():
     with st.spinner(text="Loading and indexing the Streamlit docs – hang tight! This should take 1-2 minutes."):
         reader = SimpleDirectoryReader(input_dir=file_path, recursive=True)
         docs = reader.load_data()
-        service_context = ServiceContext.from_defaults(llm=OpenAI(model="gpt-4", temperature=0.5, system_prompt="You are a helpful assistant answering questions about the uploaded files. Query them for personal questions unless not applicable. Follow the prompt exactly as it is written. Keep responses short unless explicitly asked otherwise."))
+        service_context = ServiceContext.from_defaults(llm=OpenAI(model="gpt-4", system_prompt="You are a helpful assistant answering questions about the files uploaded by JC, his MBA admissions essays. Query them for personal questions unless not applicable. Follow the prompt exactly as it is written. Keep responses short unless explicitly asked otherwise."))
         index = VectorStoreIndex.from_documents(docs, service_context=service_context)
         return index
 
