@@ -3,4 +3,4 @@ openai
 llama_index
 nltk
 pypdf
-doc2txt
+docx2txt
